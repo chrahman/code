@@ -1,53 +1,145 @@
+ <!-- Slider Starts here -->
   <style>
-    .unpaid-bage {
-      background: #FFDDE3;
-      border-radius: 8px;
+    :root {
+      --main-color: #5D5FEF;
+    }
+    .carousel-indicators .active  {
+      opacity: 1;
+      width: 11px !important;
+      height: 11px !important;
+      margin-top: -1px;
+      background-color: var(--main-color) !important;
+    }
+    .carousel-indicators [data-bs-target] {
+      background-color: transparent;
+      width: 8px; /* change width */
+      height: 8px; /* change height */
+      border: 1.5px solid var(--main-color) !important;
+      border-radius: 100%;  /* add border-radius */
+    }
+    .text-gray {
+      color:#4B6584;
+    }
+    .badge-green {
+      color:#4C9E77;
+      background: #E0EDE7;
       padding: 5px 10px;
-      color: #E23372;
-      font-size: 12px;
     }
-    .pyment-fs {
-      font-size: 18px;
+    .right-action {
+      position: absolute;
+      right: 0;
+      top: 0;
     }
-    .mb-invoice {
-      padding: 1rem;
+    .carousel-indicators {
+      bottom: -70px;
     }
-    @media screen and (max-width: 400px) {
-      .mb-invoice {
-        padding: 0 !important;
-      }
-      .fs-14 {
-        font-size: 14px !important;
-      }
-    }
-    .btnshow-less[aria-expanded="false"]:after {content: "more >";margin-left: 3px;}
-    .btnshow-less[aria-expanded="true"]:after {content: "less <";}
   </style>
-  <section class="container-sm bg-white d-lg-none d-md-block mb-5">
-    <div class="row justify-content-between mb-invoice">
-      <div class="col mb-3 fs-14">
-        <div><span class="unpaid-bage mb-2">Unpaid</span></div>
-        <div class="mt-4" style="color:#4B6584">Bill Amount</div>
-        <div><b class="pyment-fs me-2">Rs. 4,500</b><span style="color:#26C9C9;background:#DCFEF6;border-radius:8px;padding:3px 8px;">PKR</span></div>
-        <div style="color:#848498;">/monthly</div>
-
+  <section class="my-5 py-3 d-lg-none d-md-block">
+      <div class="container-sm">
+        <h5 class="float-start"><b>Scheduled Classes</b></h5>
+        <div class="float-end"><a href="#" >View All</a></div>
+        <br><br>
       </div>
-      <div class="col fs-14">
-        <span style="color:#848498;">Due Date:</span><b class="ms-2">6th May 21</b>
-        <div class="mt-3" style="color:#4B6584">Bill ID</div>
-        <div class="text-primary" style="color:#4B6584">5550118 ></div>
-      </div>
-      <div class="collapse fs-14" id="collapseExample">
-        <div class="mt-3 mb-3">
-          <div style="color:#848498;">Subject/Tutor</div>
-          <div><b>English Language</b></div>
-          <div class="mt-3" style="color:#848498;">External Bill ID</div>
-          <div>5550118</div>
+    <div class="container-fluid">
+      <div class="container-sm bg-white py-3 rounded">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators mt-4 position-absolute">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" class="" ></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4" class="" ></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5" class="" ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item">
+              <div class="text-start position-relative">
+                <div class="right-action">
+                  <img src="icons/action.svg" alt="Action">
+                </div>
+                <div class="text-gray">Date</div>
+                <div>Apr, 09, 21</div>
+                <br>
+                <div class="text-gray">Duration</div>
+                <div class="mt-2 mb-2"><span class="badge-green rounded">10:00 - 12:00 PM PST</span></div>
+                <br>
+                <div class="text-gray">Class Status</div>
+                <div class="d-grid gap-2 mt-2">
+                  <button class="btn btn-primary" type="button">Join Class</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="text-start position-relative">
+                <div class="right-action">
+                  <img src="icons/action.svg" alt="Action">
+                </div>
+                <div class="text-gray">Date</div>
+                <div>Apr, 09, 21</div>
+                <br>
+                <div class="text-gray">Duration</div>
+                <div class="mt-2 mb-2"><span class="badge-green rounded">10:00 - 12:00 PM PST</span></div>
+                <br>
+                <div class="text-gray">Class Status</div>
+                <div class="d-grid gap-2 mt-2">
+                  <button class="btn btn-primary" type="button">Join Class</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="text-start position-relative">
+                <div class="right-action">
+                  <img src="icons/action.svg" alt="Action">
+                </div>
+                <div class="text-gray">Date</div>
+                <div>Apr, 09, 21</div>
+                <br>
+                <div class="text-gray">Duration</div>
+                <div class="mt-2 mb-2"><span class="badge-green rounded">10:00 - 12:00 PM PST</span></div>
+                <br>
+                <div class="text-gray">Class Status</div>
+                <div class="d-grid gap-2 mt-2">
+                  <button class="btn btn-primary" type="button">Join Class</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="text-start position-relative">
+                <div class="right-action">
+                  <img src="icons/action.svg" alt="Action">
+                </div>
+                <div class="text-gray">Date</div>
+                <div>Apr, 09, 21</div>
+                <br>
+                <div class="text-gray">Duration</div>
+                <div class="mt-2 mb-2"><span class="badge-green rounded">10:00 - 12:00 PM PST</span></div>
+                <br>
+                <div class="text-gray">Class Status</div>
+                <div class="d-grid gap-2 mt-2">
+                  <button class="btn btn-primary" type="button">Join Class</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item active">
+              <div class="text-start position-relative">
+                <div class="right-action">
+                  <img src="icons/action.svg" alt="Action">
+                </div>
+                <div class="text-gray">Date</div>
+                <div>Apr, 09, 21</div>
+                <br>
+                <div class="text-gray">Duration</div>
+                <div class="mt-2 mb-2"><span class="badge-green rounded">10:00 - 12:00 PM PST</span></div>
+                <br>
+                <div class="text-gray">Class Status</div>
+                <div class="d-grid gap-2 mt-2">
+                  <button class="btn btn-primary" type="button">Join Class</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <hr class="m-auto" style="width: 97%;">
-        <a class="text-primary btnshow-less text-decoration-none mt-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          See 
-        </a>
     </div>
   </section>
+
+  <!-- Slider ends here -->
