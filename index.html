@@ -2,727 +2,183 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <title>Chat box</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif !important;
-            font-size: 14px !important;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Forms</title>
+  <style>
+    input {
+      position: relative !important;
+      height: 56px;
+      font-size: 14px !important;
+    }
 
-        .chat_ib h5 {
-            font-size: 14px !important;
-            color: #464646;
-            margin: 0 0 2px 0;
-        }
+    textarea {
+      height: 150px;
+      font-size: 14px;
+      padding-top: 15px !important;
+    }
 
-        .chat_ib p {
-            font-size: 14px;
-            color: #989898;
-            margin: auto
-        }
+    .form-label {
+      position: absolute !important;
+      background-color: #fff;
+      z-index: 1;
+      top: -10px;
+      left: 15px;
+      padding: 0 .25rem;
+    }
 
-        .chat_img {
-            float: left;
-            width: 11%;
-            
-        }
+    textarea:focus {
+      box-shadow: none !important;
+    }
 
-        .chat_img img {
-            width: 100%;
-            border-radius: 8px !important;
-        }
+    #count-character {
+      position: absolute;
+      right: 15px;
+      bottom: -10px;
+    }
 
-        .chat_ib {
-            float: left;
-            padding: 0 0 0 15px;
-            width: 88%;
-        }
+    .plus-icon {
+      position: absolute !important;
+      right: 15px;
+      top: 15px;
+      width: 24px;
+      height: 24px;
+      line-height: 25px;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer !important;
+    }
 
-        .chat_people {
-            overflow: hidden;
-            clear: both;
-            padding: 18px 6px;
-            border-bottom: 1px solid #E0E2ED;
-        }
+    /* Already available */
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px !important;
+    }
 
-        .chat_list {
-            margin: 0;
-            padding: 0px 12px 0px 10px;
-            cursor: pointer;
-        }
-
-        .chat_list:hover {
-            background-color: #F5F7FC;
-        }
-
-        .chat_list:last-child {
-            border: none !important;
-        }
-
-        .inbox_chat {
-            height: 550px;
-            overflow-y: auto;
-        }
-
-        .inbox_chat .active {
-            background: #F5F7FC;
-            border-left: 3px solid #5D5FEF !important;
-        }
-
-        .incoming_msg_img {
-            display: inline-block;
-            width: 6%;
-        }
-
-        .incoming_msg_img img {
-            width: 100%;
-        }
-
-        .received_msg {
-            display: inline-block;
-            padding: 0 0 0 10px;
-            vertical-align: top;
-            width: 92%;
-        }
-
-        .received_withd_msg p {
-            background: #e0e2ed;
-            border-radius: 8px;
-            color: #646464;
-            font-size: 14px;
-            margin: 0;
-            padding: 10px 10px 10px 12px;
-            width: 100%;
-        }
-
-        .time_date {
-            color: #B3B6CB;
-            display: block;
-            font-size: 12px;
-            margin: 8px 0 0;
-        }
-
-        .received_withd_msg {
-            position: relative;
-            width: 57%;
-            margin-right: 10px;
-        }
-
-        .mesgs {
-            border-left: 1px solid #c4c4c4;
-        }
-
-        .sent_msg p {
-            background: #5D5FEF;
-            border-radius: 8px;
-            font-size: 14px;
-            margin: 0;
-            color: #fff;
-            padding: 10px 10px 10px 12px;
-            width: 100%;
-        }
-
-        .sent_msg p::after {
-            content: "";
-            width: 0;
-            height: 0;
-            top: 11px;
-            right: -10px;
-            position: absolute;
-            border-width: 0 8px 8px 8px;
-            transform: rotate(80deg);
-            border-style: solid;
-            border-color: #5D5FEF transparent;
-        }
-
-        .received_withd_msg p::before {
-            content: "";
-            width: 0;
-            height: 0;
-            top: 11px;
-            left: -10px;
-            position: absolute;
-            border-width: 0 8px 8px 8px;
-            transform: rotate(-85deg);
-            border-style: solid;
-            border-color: #e0e2ed transparent;
-        }
-
-        .outgoing_msg {
-            overflow: hidden;
-            margin: 26px 0 26px;
-        }
-
-        .sent_msg {
-            position: relative;
-            float: right;
-            width: 46%;
-            margin-right: 10px;
-        }
-
-        .msg_history {
-            height: 516px;
-            overflow-y: auto;
-            padding: 15px;
-        }
-
-        .chat_list:hover {
-            border-left: 3px solid #5D5FEF !important;
-            border-bottom: none !important;
-        }
-        .chat_people:active {
-            border-bottom: none;
-        }
-        .messaging input:focus {
-            box-shadow: none !important;
-        }
-
-        .c-search-button {
-            right: 15px;
-            top: 17px;
-        }
-
-        .c-search-label {
-            top: -10px;
-            left: 15px;
-        }
-
-        #c-search-input {
-            height: 56px;
-            width: 97%;
-            margin: 0 auto;
-            font-size: 14px !important;
-            padding-right: 40px;
-        }
-        /* For chat responsive */
-        @media screen and (max-width:992px) {
-            .inbox_people {
-                float: none !important;
-            }
-
-            .inbox_chat {
-                height: auto !important;
-            }
-            .sent_msg {
-                width: 95% !important;
-            }
-            .received_withd_msg {
-                width: 100%;
-            }
-            .received_msg {
-                width: 100%;
-            }
-        }
-
-        .rounded-3 {
-            border-radius: 8px !important;
-        }
-        .type_msg .form-control {
-            width: 89% !important;
-        }
-        .offcanvas-body .form-control {
-            width: 75% !important;
-        }
-
-        .h5,
-        h5 {
-            font-size: 18px !important;
-            font-weight: 600 !important;
-        }
-
-        .chat_date {
-            font-size: 12px !important;
-            color: #B3B6CB;
-            font-weight: 500 !important;
-            float: right;
-        }
-
-        .text-gray {
-            color: #B3B6CB;
-        }
-
-        .bg-gray {
-            background-color: #B3B6CB;
-        }
-
-        .bg-purple {
-            background-color: #5D5FEF;
-        }
-
-        .messaging ::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        .messaging ::-webkit-scrollbar-thumb {
-            background: #6c757d;
-        }
-
-        .bg-orange {
-            background: #FFA504;
-        }
-    </style>
+    .rounded-3 {
+      border-radius: 8px !important;
+    }
+    input:focus {
+      box-shadow: none !important;
+    }
+    .text-gray {
+      color: #B3B6CB;
+    }
+    .bg-orange {
+      background: #FFA504;
+    }
+    .bg-purple {
+      background-color: #5D5FEF;
+    }
+  </style>
 </head>
 
-<body class="py-5" style="background-color: #E5E5E5;">
+<body>
+  <section class="container-sm p-2">
+    <div class="row">
+      <div class="pb-1 border-bottom">
+        <h5>Tell us what you need done</h5>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt eligendi nemo expedita, dolorum
+          consectetur non ea, dignissimos error sunt animi ut sit nobis minus incidunt id veritatis? Iste, possimus
+          dicta!</p>
+      </div>
 
+      <br>
 
-    <section class="container-sm container-md container-xxl bg-white d-none d-lg-block" style="border-radius: 8px !important;">
-        <div class="messaging  row">
-            <div class="inbox_msg p-0">
-                <div class="inbox_people col-lg-4 float-start py-1">
-                    <!-- Search Recepients -->
-                    <div class="mx-3 my-3 position-relative">
-                        <label class="c-search-label position-absolute bg-white px-1"
-                            for="c-search-input">Search</label>
-                        <input type="search" id="c-search-input" class="form-control rounded-3"
-                            placeholder="Search by name or keyword">
-                        <i type="button" class="c-search-button d-grid position-absolute">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.6 18.2C14.7974 18.2 18.2 14.7974 18.2 10.6C18.2 6.40264 14.7974 3 10.6 3C6.40264 3 3 6.40264 3 10.6C3 14.7974 6.40264 18.2 10.6 18.2Z" stroke="#353547" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round"/>
-                            <path d="M16.079 16.0781L20.2325 20.2316" stroke="#848498" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round"/>
-                            </svg>
-                        </i>
-                    </div>
-                    <!-- Index Recepients -->
-                    <div class="inbox_chat pb-3 nav d-block">
-                        <div class="chat_list active" data-bs-toggle="pill" data-bs-target="#recepient-1">
-                            <div class="chat_people">
-                                <div class="chat_img rounded-3">
-                                    <img src="/new_ui/profile.svg" alt="Zareen khan">
-                                </div>
-                                <div class="chat_ib">
-                                    <div class="d-inline">
-                                        <h5 class="m-0 float-start d-inline-block">Zareen Khan</h5>
-                                        <span class="badge bg-dark text-white float-end d-inline-block">3</span>
-                                    </div><br/>
-                                    <p>TThank you for reduce...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list" data-bs-toggle="pill" data-bs-target="#recepient-2">
-                            <div class="chat_people">
-                                <div class="chat_img"> <img src="/new_ui/profile.svg"
-                                        alt="Zareen khan"> </div>
-                                <div class="chat_ib">
-                                    <h5>Zareen khan</h5>
-                                    <p>Thank you so much for reducing the price. Thank you for...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list" data-bs-toggle="pill" data-bs-target="#recepient-3">
-                            <div class="chat_people">
-                                <div class="chat_img"> <img src="/new_ui/profile.svg"
-                                        alt="Zareen khan"> </div>
-                                <div class="chat_ib">
-                                    <h5>Zareen khan</h5>
-                                    <p>Thank you so much for reducing the price. Thank you for...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list" data-bs-toggle="pill" data-bs-target="#recepient-4">
-                            <div class="chat_people">
-                                <div class="chat_img"> <img src="/new_ui/profile.svg"
-                                        alt="Abu Sufyan"> </div>
-                                <div class="chat_ib">
-                                    <h5>Abu Sufyan </h5>
-                                    <p>Thank you so much for reducing the price. Thank you for...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Massages Chat -->
-                <div class="mesgs bg-white col-lg-8 d-none d-lg-block float-end">
-                    <!-- Recepient Profile & My request -->
-                    <div class="recepents align-items-center border-bottom py-3 px-3">
-                        <div class="recepent-logo d-inline-block align-top ">
-                            <img width="45" src="/new_ui/profile.svg" class="rounded-3" alt="Zareen Khan">
-                        </div>
-                        <div class="recipent-name-request d-inline-block ps-2">
-                            <h5 class="m-0">Zareen Khan</h5>
-                            <div class="my-request">
-                                <p class="mb-0">My Request: <a href="#" class="ms-2 text-decoration-none">Looking for Math
-                                        Teacher</a>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Delete icon -->
-                        <div class="float-end mt-2 me-4 fs-5">
-                            <a class="text-gray" href="#">
-                                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="2.22223" y="4.33398" width="15.5556" height="16.6667" stroke="#B3B6CB" stroke-width="2" stroke-miterlimit="10"/>
-                                    <rect x="5.55554" y="1" width="8.88889" height="3.33333" stroke="#B3B6CB" stroke-width="2" stroke-miterlimit="10"/>
-                                    <path d="M0 4.3329H20" stroke="#B3B6CB" stroke-width="2" stroke-miterlimit="10"/>
-                                    <path d="M7.22221 9.42549V15.907" stroke="#B3B6CB" stroke-width="2" stroke-miterlimit="10"/>
-                                    <path d="M12.7778 9.42549V15.907" stroke="#B3B6CB" stroke-width="2" stroke-miterlimit="10"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Chat massages starts here -->
-                    <div class="msg_history py-3 tab-content">
-                        <!-- Sample Chat 1 -->
-                        <div class="tab-pane fade show active" id="recepient-1">
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test which is a new approach to have all
-                                            solutions 1</p>
-                                        <span class="time_date"> 11:01 AM | June 9</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Test which is a new approach to have all
-                                        solutions</p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test, which is a new approach to have</p>
-                                        <span class="time_date"> 11:01 AM | Yesterday</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Apollo University, Delhi, India Test</p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>We work directly with our designers and suppliers,
-                                            and sell direct to you, which means quality, exclusive
-                                            products, at a price anyone can afford.</p>
-                                        <span class="time_date"> 11:01 AM | Today</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Sample Chat 2 -->
-                        <div class="tab-pane fade" id="recepient-2">
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test which is a new approach to have all
-                                            solutions 2</p>
-                                        <span class="time_date"> 11:01 AM | June 9</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Test which is a new approach to have all
-                                        solutions</p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test, which is a new approach to have</p>
-                                        <span class="time_date"> 11:01 AM | Yesterday</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Apollo University, Delhi, India Test</p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>We work directly with our designers and suppliers,
-                                            and sell direct to you, which means quality, exclusive
-                                            products, at a price anyone can afford.</p>
-                                        <span class="time_date"> 11:01 AM | Today</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Sample Chat 3 -->
-                        <div class="tab-pane fade" id="recepient-3">
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test which is a new approach to have all
-                                            solutions 3</p>
-                                        <span class="time_date"> 11:01 AM | June 9</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Test which is a new approach to have all
-                                        solutions</p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test, which is a new approach to have</p>
-                                        <span class="time_date"> 11:01 AM | Yesterday</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Apollo University, Delhi, India Test</p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>We work directly with our designers and suppliers,
-                                            and sell direct to you, which means quality, exclusive
-                                            products, at a price anyone can afford.</p>
-                                        <span class="time_date"> 11:01 AM | Today</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Sample Chat 4 -->
-                        <div class="tab-pane fade" id="recepient-4">
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test which is a new approach to have all
-                                            solutions 4</p>
-                                        <span class="time_date"> 11:01 AM | June 9</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Test which is a new approach to have all
-                                        solutions</p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test, which is a new approach to have</p>
-                                        <span class="time_date"> 11:01 AM | Yesterday</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Apollo University, Delhi, India Test</p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>We work directly with our designers and suppliers,
-                                            and sell direct to you, which means quality, exclusive
-                                            products, at a price anyone can afford.</p>
-                                        <span class="time_date"> 11:01 AM | Today</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Type & send massage -->
-                    <div class="type_msg mt-2 bg-gray row mx-0 px-0 py-2 align-items-center">
-                        <div class="col-sm p-0">
-                            <button type="button" class="float-end btn rounded-pill bg-purple text-white me-2" type="button">+</button>
-                        </div>
-                        <div class="col-sm-11 p-0">
-                            <form action="#">
-                                <input type="text" required class="form-control bg-white msg-type position-relative d-inline-block" placeholder="Write a message…" />
-                                <button class="bg-orange btn ms-2" type="submit"> 
-                                    <svg class="align-text-top" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.93592 14.4743L0.298274 12.4449C-0.0793733 12.2802 -0.104079 11.7543 0.255921 11.5555L19.4542 1.04179C19.7295 0.88885 20.0589 1.1265 20 1.43591L16.6642 18.219C16.6077 18.5226 16.29 18.7014 16.0018 18.5931L10.2442 16.4343L7.19239 21.0008L6.56769 20.722L6.63122 15.8179C6.63239 15.6555 6.69474 15.5002 6.80298 15.3802L16.1995 5.04727L4.93592 14.4743Z" fill="white"/>
-                                    </svg>
-                                </button>
-                            </form>
-                            <!-- <i class="emoji">
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M9 1C4.5888 1 1 4.5888 1 9C1 13.4112 4.5888 17 9 17C13.4112 17 17 13.4112 17 9C17 4.5888 13.4112 1 9 1" stroke="#869AB4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 9C7.328 9 8 8.3295 8 7.5C8 6.6705 7.328 6 6.5 6C5.672 6 5 6.6705 5 7.5C5 8.3295 5.672 9 6.5 9Z" fill="#869AB4"/>
-                              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3 6C10.472 6 9.80005 6.6705 9.80005 7.5C9.80005 8.3295 10.472 9 11.3 9C12.128 9 12.8 8.3295 12.8 7.5C12.8 6.6705 12.128 6 11.3 6Z" fill="#869AB4"/>
-                              <path d="M6.03467 12.166C6.14027 12.2724 7.12267 13.2004 9.00027 13.2004C10.8771 13.2004 11.8603 12.2724 11.9659 12.166" stroke="#869AB4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                            </i>
-                          -->
-                        </div>
-                    </div>
-                </div>
+      <div class="mt-5">
+        <form class="row g-3 needs-validation" novalidate>
+          <div class="col-md-6 position-relative">
+            <label for="validationCustom01" class="form-label">Request title*</label>
+            <input type="text" class="form-control" placeholder="Choose a name for your request" id="validationCustom01" required>
+            <div class="valid-feedback">
+              Looks good!
             </div>
-        </div>
-    </section>
-        
+            <div class="invalid-feedback">
+              Please input Request title
+            </div>
+          </div>
+          <div class="col-md-6 position-relative">
+            <label for="validationCustom02" class="form-label">Preffered tutor gender</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Choose gender">
+          </div>
+          <div class="col-12 position-relative">
+            <label for="validationCustom03" class="form-label">What subjects you want to study?*</label>
+            <input type="text" class="form-control" placeholder="Add subjects" id="validationCustom03" required>
+            <b class="plus-icon bg-purple text-white rounded-pill">+</b>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please input Subjects
+            </div>
+          </div>
+          <p class="text-gray"><b class="text-dark">Example: </b>Maths, English, Phsyics, Chemistry</p>
+          <div class="col-md-6 position-relative">
+            <label for="validationCustom01" class="form-label">Preferred time slot*</label>
+            <input type="text" class="form-control" placeholder="Example:  I am available at 10:00 - 12:00 PM PST" id="validationCustom01" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please input time slot
+            </div>
+          </div>
+          <div class="col-md-6 position-relative">
+            <label for="validationCustom02" class="form-label">Grades*</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Example: Grades/Level/Qualifications" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please input Grades
+            </div>
+          </div>
+          <div class="col-12 position-relative mt-4">
+            <label for="validationCustom05" class="form-label">Request Details:</label>
+            <textarea class="form-control" placeholder="Type here..." id="validationCustom05" maxlength="2500" ></textarea>
+            <div id="count-character"><p class="d-inline-block">0</p>/2500</div>
+          </div>
+          <div class="col-12">
+            <button class="btn bg-orange text-white float-end" type="submit">Post Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 
-    <br><br>
-        <!-- Mobile Section -->
-    <section class="container-sm bg-white py-2 d-lg-none d-md-block">
-        <div class="inbox_people col-lg-4 float-start py-1">
-            <!-- Search Recepients -->
-            <div class="mx-3 my-3 position-relative">
-                <label class="c-search-label position-absolute bg-white px-1"
-                    for="c-search-input">Search</label>
-                <input type="search" id="c-search-input" class="form-control rounded-3"
-                    placeholder="Search by name or keyword">
-                <i type="button" class="c-search-button d-grid position-absolute">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.6 18.2C14.7974 18.2 18.2 14.7974 18.2 10.6C18.2 6.40264 14.7974 3 10.6 3C6.40264 3 3 6.40264 3 10.6C3 14.7974 6.40264 18.2 10.6 18.2Z" stroke="#353547" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round"/>
-                    <path d="M16.079 16.0781L20.2325 20.2316" stroke="#848498" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round"/>
-                    </svg>
-                </i>
-            </div>
-            <!-- Index Recepients -->
-            <div class="inbox_chat pb-3 nav d-block">
-                <div class="chat_list" data-bs-toggle="offcanvas" data-bs-target="#mobile-mesges-chat">
-                    <div class="chat_people">
-                        <div class="chat_img rounded-3">
-                            <img src="/new_ui/profile.svg " alt="Zareen khan">
-                        </div>
-                        <div class="chat_ib">
-                            <div class="d-inline">
-                                <h5 class="m-0 float-start d-inline-block">Zareen Khan</h5>
-                                <span class="badge bg-dark text-white float-end d-inline-block">3</span>
-                            </div><br/>
-                            <p>Thank you for reduce...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat_list" data-bs-toggle="offcanvas" data-bs-target="#mobile-mesges-chat">
-                    <div class="chat_people">
-                        <div class="chat_img"> <img src="/new_ui/profile.svg"
-                                alt="Zareen khan"> </div>
-                        <div class="chat_ib">
-                            <h5>Zareen khan</h5>
-                            <p>Thank you so much for reducing the price. Thank you for...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat_list" data-bs-toggle="offcanvas" data-bs-target="#mobile-mesges-chat">
-                    <div class="chat_people">
-                        <div class="chat_img"> <img src="/new_ui/profile.svg"
-                                alt="Zareen khan"> </div>
-                        <div class="chat_ib">
-                            <h5>Zareen khan</h5>
-                            <p>Thank you so much for reducing the price. Thank you for...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat_list" data-bs-toggle="offcanvas" data-bs-target="#mobile-mesges-chat">
-                    <div class="chat_people">
-                        <div class="chat_img"> <img src="/new_ui/profile.svg"
-                                alt="Abu Sufyan"> </div>
-                        <div class="chat_ib">
-                            <h5>Abu Sufyan </h5>
-                            <p>Thank you so much for reducing the price. Thank you for...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <!-- Mobile Modal -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobile-mesges-chat"
-            aria-labelledby="mobile-mesges-chatLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="mobile-mesges-chatLabel">Sophia</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body p-0">
-                <!-- Mobile massages -->
-                    <div class="msg_history py-3">
-                        <!-- Sample Chat 1 -->
-                        <div class="tab-pane fade show active" id="recepient-1">
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test which is a new approach to have all
-                                            solutions 1</p>
-                                        <span class="time_date"> 11:01 AM | June 9</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Test which is a new approach to have all
-                                        solutions</p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>Test, which is a new approach to have</p>
-                                        <span class="time_date"> 11:01 AM | Yesterday</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>Apollo University, Delhi, India Test</p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>We work directly with our designers and suppliers,
-                                            and sell direct to you, which means quality, exclusive
-                                            products, at a price anyone can afford.</p>
-                                        <span class="time_date"> 11:01 AM | Today</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Type & send massage -->
-                    <div class="type_msg mt-2 bg-gray row mx-0 px-0 py-2 align-items-center">
-                        <div class="col-2 p-0">
-                            <button type="button" class="float-end btn rounded-pill bg-purple text-white me-2">+</button>
-                        </div>
-                        <div class="col-10 p-0">
-                            <form action="#">
-                                <input type="text" required class="form-control bg-white msg-type position-relative d-inline-block" placeholder="Write a message…" />
-                                <button class="bg-orange btn ms-1" type="submit"> 
-                                    <svg class="align-text-top" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.93592 14.4743L0.298274 12.4449C-0.0793733 12.2802 -0.104079 11.7543 0.255921 11.5555L19.4542 1.04179C19.7295 0.88885 20.0589 1.1265 20 1.43591L16.6642 18.219C16.6077 18.5226 16.29 18.7014 16.0018 18.5931L10.2442 16.4343L7.19239 21.0008L6.56769 20.722L6.63122 15.8179C6.63239 15.6555 6.69474 15.5002 6.80298 15.3802L16.1995 5.04727L4.93592 14.4743Z" fill="white"/>
-                                    </svg>
-                                </button>
-                            </form>
-                            <!-- <i class="emoji">
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M9 1C4.5888 1 1 4.5888 1 9C1 13.4112 4.5888 17 9 17C13.4112 17 17 13.4112 17 9C17 4.5888 13.4112 1 9 1" stroke="#869AB4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 9C7.328 9 8 8.3295 8 7.5C8 6.6705 7.328 6 6.5 6C5.672 6 5 6.6705 5 7.5C5 8.3295 5.672 9 6.5 9Z" fill="#869AB4"/>
-                              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3 6C10.472 6 9.80005 6.6705 9.80005 7.5C9.80005 8.3295 10.472 9 11.3 9C12.128 9 12.8 8.3295 12.8 7.5C12.8 6.6705 12.128 6 11.3 6Z" fill="#869AB4"/>
-                              <path d="M6.03467 12.166C6.14027 12.2724 7.12267 13.2004 9.00027 13.2004C10.8771 13.2004 11.8603 12.2724 11.9659 12.166" stroke="#869AB4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                            </i>
-                          -->
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </section>
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+document.getElementById('validationCustom05').onkeyup = function () {
+  document.querySelector('#count-character p').innerHTML = (0 + this.value.length);
+};
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
 </body>
