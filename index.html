@@ -9,174 +9,163 @@
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>Forms</title>
-  <style>
-    input {
-      position: relative !important;
-      height: 56px;
-      font-size: 14px !important;
-    }
+      <style>
+      .form-switch .form-check-input:focus {
+        border: none !important;
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='25 -6 250 250 ' ><rect x='50' y='20' rx='30' ry='30' width='200' height='200' fill='%23B3B6CB' /></svg>") !important;
+      }
 
-    textarea {
-      height: 150px;
-      font-size: 14px;
-      padding-top: 15px !important;
-    }
+      .form-switch .form-check-input { 
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='25 -6 250 250 ' ><rect x='50' y='20' rx='30' ry='30' width='200' height='200' fill='%23B3B6CB' /></svg>") !important;
+        height: 32px;
+        width: 56px;
+        border-radius: 8px !important;
+        margin-top: -8px !important;
+        margin-left: 0.5em !important;
+        margin-right: 0.5em !important;
+        background-color: #E0E2ED;
+        cursor: pointer;
+      }
 
-    .form-label {
-      position: absolute !important;
-      background-color: #fff;
-      z-index: 1;
-      top: -10px;
-      left: 15px;
-      padding: 0 .25rem;
-    }
+      .form-switch .form-check-input:checked {
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='25 -6 250 250 ' ><rect x='50' y='20' rx='30' ry='30' width='200' height='200' fill='%235D5FEF' /></svg>") !important;
+        border: none !important;
+      }
 
-    textarea:focus {
-      box-shadow: none !important;
-    }
+      .check_2 {
+        color: #B3B6CB;
+      }
 
-    #count-character {
-      position: absolute;
-      right: 15px;
-      bottom: -10px;
-    }
+      .file-upload-wrapper {
+        position: relative;
+        background-color: #f7f7fe;
+        border: 1px dashed #5D5FEF;
+        min-height: 344px;
+      }
 
-    .plus-icon {
-      position: absolute !important;
-      right: 15px;
-      top: 15px;
-      width: 24px;
-      height: 24px;
-      line-height: 25px;
-      font-size: 18px;
-      text-align: center;
-      cursor: pointer !important;
-    }
+      .first-wrepper {
+        background-color: #f7f7fe;
+        border: 1px dashed #5D5FEF;
+      }
 
-    /* Already available */
-    body {
-      font-family: 'Poppins', sans-serif;
-      font-size: 14px !important;
-    }
+      .file-upload-wrapper .btn {
+        position: absolute;
+        bottom: 20%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
 
-    .rounded-3 {
-      border-radius: 8px !important;
-    }
-    input:focus {
-      box-shadow: none !important;
-    }
-    .text-gray {
-      color: #B3B6CB;
-    }
-    .bg-orange {
-      background: #FFA504;
-    }
-    .bg-purple {
-      background-color: #5D5FEF;
-    }
-  </style>
+      .file-upload-wrapper input {
+        position: absolute !important;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0 !important;
+      }
+
+      .form-check {
+        padding-left: 0 !important;
+      }
+
+      .badge-plus {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        line-height: 2.8 !important;
+      }
+    </style>
 </head>
 
 <body>
-  <section class="container-sm p-2">
-    <div class="row">
-      <div class="pb-1 border-bottom">
-        <h5>Tell us what you need done</h5>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt eligendi nemo expedita, dolorum
-          consectetur non ea, dignissimos error sunt animi ut sit nobis minus incidunt id veritatis? Iste, possimus
-          dicta!</p>
-      </div>
-
-      <br>
-
-      <div class="mt-5">
-        <form class="row g-3 needs-validation" novalidate>
-          <div class="col-md-6 position-relative">
-            <label for="validationCustom01" class="form-label">Request title*</label>
-            <input type="text" class="form-control" placeholder="Choose a name for your request" id="validationCustom01" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please input Request title
-            </div>
-          </div>
-          <div class="col-md-6 position-relative">
-            <label for="validationCustom02" class="form-label">Preffered tutor gender</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Choose gender">
-          </div>
-          <div class="col-12 position-relative">
-            <label for="validationCustom03" class="form-label">What subjects you want to study?*</label>
-            <input type="text" class="form-control" placeholder="Add subjects" id="validationCustom03" required>
-            <b class="plus-icon bg-purple text-white rounded-pill">+</b>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please input Subjects
-            </div>
-          </div>
-          <p class="text-gray"><b class="text-dark">Example: </b>Maths, English, Phsyics, Chemistry</p>
-          <div class="col-md-6 position-relative">
-            <label for="validationCustom01" class="form-label">Preferred time slot*</label>
-            <input type="text" class="form-control" placeholder="Example:  I am available at 10:00 - 12:00 PM PST" id="validationCustom01" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please input time slot
-            </div>
-          </div>
-          <div class="col-md-6 position-relative">
-            <label for="validationCustom02" class="form-label">Grades*</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Example: Grades/Level/Qualifications" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please input Grades
-            </div>
-          </div>
-          <div class="col-12 position-relative mt-4">
-            <label for="validationCustom05" class="form-label">Request Details:</label>
-            <textarea class="form-control" placeholder="Type here..." id="validationCustom05" maxlength="2500" ></textarea>
-            <div id="count-character"><p class="d-inline-block">0</p>/2500</div>
-          </div>
-          <div class="col-12">
-            <button class="btn bg-orange text-white float-end" type="submit">Post Request</button>
-          </div>
-        </form>
-      </div>
+  <div class="container-sm">
+    <div class="first-wrepper text-center rounded-3 mt-5 lh-lg px-2 py-5">
+      <b class="btn bg-purple badge badge-plus">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.03534 0.251465L9.03534 17.8192" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+          <path d="M17.8178 9.03389H0.250002" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </b>
+      <p class="fw-bolder mt-2">Click to tag tutors</p>
+      <p>Any tutor tagged will get notification upon your request and they will respond to your request</p>
     </div>
-  </section>
 
+
+    <div class="mt-4">
+      <p>
+        Please select your request type
+        <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.9 20C16.1467 20 20.4 15.7467 20.4 10.5C20.4 5.25329 16.1467 1 10.9 1C5.65332 1 1.40002 5.25329 1.40002 10.5C1.40002 15.7467 5.65332 20 10.9 20Z" stroke="#353547" stroke-width="2" stroke-miterlimit="10"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9886 5.74992C11.9886 6.34367 11.4939 6.83846 10.9001 6.83846C10.4053 6.7395 9.91052 6.34367 9.91052 5.74992C9.91052 5.15617 10.4053 4.66138 10.9991 4.66138C11.4939 4.66138 11.9886 5.15617 11.9886 5.74992Z" fill="#353547"/>
+          <path d="M10.9 9.60938V15.25" stroke="#353547" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </p>
+    </div>
+    <div class="form-check form-switch mb-5 mt-4">
+      <label class="form-check-label check_1 fw-bolder float-start" for="flexSwitchCheckDefault">Private</label>
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+      <label class="form-check-label check_2 fw-bolder float-start" for="flexSwitchCheckDefault">Public</label>
+    </div>
+    <p>You can attach a file for tutors to understand your tuition requirments more in detail</p>
+    <div class="file-upload-wrapper text-center rounded-3 mt-3 lh-lg px-2 py-5">
+      <div class="upload-file-icon">
+        <svg width="79" height="71" viewBox="0 0 79 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.72866 68C5.15244 68 0 65.2 0 58.6V53.4V13C0 10.2 2.17988 8 4.95427 8H13.872C21.7988 8 17.6372 12.8 27.9421 12.8H53.9024C56.6768 12.8 58.8567 15 58.8567 17.8V68H7.72866Z" fill="#A2A2FF"/>
+          <path d="M37.8325 53.9387L22.2027 41.8312C20.4091 40.4418 20.0829 37.952 21.4612 36.1727L44.6968 6.17746C46.0752 4.39808 48.5674 4.09166 50.361 5.48105L65.8627 17.4893C67.6563 18.8787 67.9825 21.3684 66.6042 23.1478L43.3686 53.143C42.1183 55.0217 39.4979 55.2288 37.8325 53.9387Z" fill="#FFA504"/>
+          <circle cx="29" cy="3" r="3" fill="#E0E2ED"/>
+          <circle cx="69.5" cy="6.5" r="1.5" fill="#E0E2ED"/>
+          <circle cx="73.5" cy="13.5" r="2.5" fill="#E0E2ED"/>
+          <circle cx="68.5" cy="69.5" r="1.5" fill="#E0E2ED"/>
+          <path d="M40.2095 60.6611L26.8051 46.2101C25.2084 44.5665 25.3353 42.0211 27.098 40.5394L55.1628 14.8952C56.7974 13.3143 59.3489 13.4605 60.8472 15.2312L74.1532 29.8093C75.7498 31.4529 75.6229 33.9983 73.8602 35.48L45.7955 61.1242C44.1312 62.4788 41.5796 62.3325 40.2095 60.6611Z" fill="#FFD384"/>
+          <path d="M17.8352 58.5996C17.8352 67.9996 9.90839 67.7996 7.72852 67.9996H13.8718H60.0456C62.82 67.9996 64.9999 65.7996 64.9999 62.9996V30.5996C64.9999 27.7996 62.82 25.5996 60.0456 25.5996H22.7895C20.0151 25.7996 17.8352 27.9996 17.8352 30.5996V54.1996V58.5996Z" fill="#5D5FEF"/>
+          <path d="M44 37L54 37" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+          <path d="M34 37L39 37" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+          <path d="M26 46L43 46" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+          <path d="M38 57L53 57" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </div>
+      <b>Drag and drop file</b>
+      <p >Max upload size 30 MB</p>
+      <input type="file" id="fileUpload" class="file-upload" max-size="2000" />
+      <span id="_showName"></span>
+      <button class="btn btn-outline-primary float-end" type="submit">Upload</button>
+    </div>
+    <button class="btn bg-orange text-white float-end mt-3" type="submit">Post Request</button>
+  </div>
 <script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
+ // get upload file name and set max upload size of file
+var fileBtn = document.getElementById('fileUpload');
+var sName = document.getElementById('_showName');
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+fileBtn.onchange = function(){
+  if(this.files.length) {
+    sName.innerText = this.files[0].name;
+    sName.className = "text-success";
+    if(this.files[0].size > 30000000){
+      sName.className = "text-danger";
+      sName.innerText = "File is too big!";
+    }
+  }
+  else {
+    sName.innerText = '';
+  }
+}
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
+// Switch button
+var switch_btn = document.querySelector(".form-check-input");
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-
-document.getElementById('validationCustom05').onkeyup = function () {
-  document.querySelector('#count-character p').innerHTML = (0 + this.value.length);
-};
+switch_btn.onchange = function () {
+  if (this.checked) {
+    document.querySelector(".check_1").style.color = "#B3B6CB";
+    document.querySelector(".check_2").style.color = "black";
+  }
+  else {
+    document.querySelector(".check_1").style.color = "black";
+    document.querySelector(".check_2").style.color = "#B3B6CB";
+  }
+}
 </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
