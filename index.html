@@ -1,175 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  <title>Forms</title>
-      <style>
-      .form-switch .form-check-input:focus {
-        border: none !important;
-        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='25 -6 250 250 ' ><rect x='50' y='20' rx='30' ry='30' width='200' height='200' fill='%23B3B6CB' /></svg>") !important;
-      }
-
-      .form-switch .form-check-input { 
-        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='25 -6 250 250 ' ><rect x='50' y='20' rx='30' ry='30' width='200' height='200' fill='%23B3B6CB' /></svg>") !important;
-        height: 32px;
-        width: 56px;
-        border-radius: 8px !important;
-        margin-top: -8px !important;
-        margin-left: 0.5em !important;
-        margin-right: 0.5em !important;
-        background-color: #E0E2ED;
-        cursor: pointer;
-      }
-
-      .form-switch .form-check-input:checked {
-        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='25 -6 250 250 ' ><rect x='50' y='20' rx='30' ry='30' width='200' height='200' fill='%235D5FEF' /></svg>") !important;
-        border: none !important;
-      }
-
-      .check_2 {
-        color: #B3B6CB;
-      }
-
-      .file-upload-wrapper {
-        position: relative;
-        background-color: #f7f7fe;
-        border: 1px dashed #5D5FEF;
-        min-height: 344px;
-      }
-
-      .first-wrepper {
-        background-color: #f7f7fe;
-        border: 1px dashed #5D5FEF;
-      }
-
-      .file-upload-wrapper .btn {
-        position: absolute;
-        bottom: 20%;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-      }
-
-      .file-upload-wrapper input {
-        position: absolute !important;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        opacity: 0 !important;
-      }
-
-      .form-check {
-        padding-left: 0 !important;
-      }
-
-      .badge-plus {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        line-height: 2.8 !important;
-      }
-    </style>
 </head>
 
 <body>
-  <div class="container-sm">
-    <div class="first-wrepper text-center rounded-3 mt-5 lh-lg px-2 py-5">
-      <b class="btn bg-purple badge badge-plus">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9.03534 0.251465L9.03534 17.8192" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
-          <path d="M17.8178 9.03389H0.250002" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
-        </svg>
-      </b>
-      <p class="fw-bolder mt-2">Click to tag tutors</p>
-      <p>Any tutor tagged will get notification upon your request and they will respond to your request</p>
-    </div>
+  <label class='talk' id='button' onclick='record()' style='background:black;' title='Talk with me'><svg height='50'
+      viewBox='0 0 24 24'>
+    </svg></label>
+  <form action='https://www.google.com/search' id='action' method='get' target='blank'>
+    <input id='transcript' name='q' placeholder='Click on white button for talk with me' readonly='' type='text' />
+  </form>
+  <script>
+    // get voice
+    var synth = window.speechSynthesis;
+    var voiceSelect = document.createElement('select');
+    voiceSelect.hidden = 'hidden';
+    document.body.appendChild(voiceSelect);
+    var voices = [];
 
+    function populateVoiceList() {
+      voices = synth.getVoices();
+      var selectedIndex = voiceSelect.selectedIndex < 0 ? 21 : voiceSelect.selectedIndex; //select voice
+      voiceSelect.innerHTML = '';
+      for (i = 0; i < voices.length; i++) {
+        var option = document.createElement('option');
+        option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
 
-    <div class="mt-4">
-      <p>
-        Please select your request type
-        <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.9 20C16.1467 20 20.4 15.7467 20.4 10.5C20.4 5.25329 16.1467 1 10.9 1C5.65332 1 1.40002 5.25329 1.40002 10.5C1.40002 15.7467 5.65332 20 10.9 20Z" stroke="#353547" stroke-width="2" stroke-miterlimit="10"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9886 5.74992C11.9886 6.34367 11.4939 6.83846 10.9001 6.83846C10.4053 6.7395 9.91052 6.34367 9.91052 5.74992C9.91052 5.15617 10.4053 4.66138 10.9991 4.66138C11.4939 4.66138 11.9886 5.15617 11.9886 5.74992Z" fill="#353547"/>
-          <path d="M10.9 9.60938V15.25" stroke="#353547" stroke-width="2" stroke-miterlimit="10"/>
-        </svg>
-      </p>
-    </div>
-    <div class="form-check form-switch mb-5 mt-4">
-      <label class="form-check-label check_1 fw-bolder float-start" for="flexSwitchCheckDefault">Private</label>
-      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-      <label class="form-check-label check_2 fw-bolder float-start" for="flexSwitchCheckDefault">Public</label>
-    </div>
-    <p>You can attach a file for tutors to understand your tuition requirments more in detail</p>
-    <div class="file-upload-wrapper text-center rounded-3 mt-3 lh-lg px-2 py-5">
-      <div class="upload-file-icon">
-        <svg width="79" height="71" viewBox="0 0 79 71" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7.72866 68C5.15244 68 0 65.2 0 58.6V53.4V13C0 10.2 2.17988 8 4.95427 8H13.872C21.7988 8 17.6372 12.8 27.9421 12.8H53.9024C56.6768 12.8 58.8567 15 58.8567 17.8V68H7.72866Z" fill="#A2A2FF"/>
-          <path d="M37.8325 53.9387L22.2027 41.8312C20.4091 40.4418 20.0829 37.952 21.4612 36.1727L44.6968 6.17746C46.0752 4.39808 48.5674 4.09166 50.361 5.48105L65.8627 17.4893C67.6563 18.8787 67.9825 21.3684 66.6042 23.1478L43.3686 53.143C42.1183 55.0217 39.4979 55.2288 37.8325 53.9387Z" fill="#FFA504"/>
-          <circle cx="29" cy="3" r="3" fill="#E0E2ED"/>
-          <circle cx="69.5" cy="6.5" r="1.5" fill="#E0E2ED"/>
-          <circle cx="73.5" cy="13.5" r="2.5" fill="#E0E2ED"/>
-          <circle cx="68.5" cy="69.5" r="1.5" fill="#E0E2ED"/>
-          <path d="M40.2095 60.6611L26.8051 46.2101C25.2084 44.5665 25.3353 42.0211 27.098 40.5394L55.1628 14.8952C56.7974 13.3143 59.3489 13.4605 60.8472 15.2312L74.1532 29.8093C75.7498 31.4529 75.6229 33.9983 73.8602 35.48L45.7955 61.1242C44.1312 62.4788 41.5796 62.3325 40.2095 60.6611Z" fill="#FFD384"/>
-          <path d="M17.8352 58.5996C17.8352 67.9996 9.90839 67.7996 7.72852 67.9996H13.8718H60.0456C62.82 67.9996 64.9999 65.7996 64.9999 62.9996V30.5996C64.9999 27.7996 62.82 25.5996 60.0456 25.5996H22.7895C20.0151 25.7996 17.8352 27.9996 17.8352 30.5996V54.1996V58.5996Z" fill="#5D5FEF"/>
-          <path d="M44 37L54 37" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
-          <path d="M34 37L39 37" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
-          <path d="M26 46L43 46" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
-          <path d="M38 57L53 57" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
-        </svg>
-      </div>
-      <b>Drag and drop file</b>
-      <p >Max upload size 30 MB</p>
-      <input type="file" id="fileUpload" class="file-upload" max-size="2000" />
-      <span id="_showName"></span>
-      <button class="btn btn-outline-primary float-end" type="submit">Upload</button>
-    </div>
-    <button class="btn bg-orange text-white float-end mt-3" type="submit">Post Request</button>
-  </div>
-<script>
- // get upload file name and set max upload size of file
-var fileBtn = document.getElementById('fileUpload');
-var sName = document.getElementById('_showName');
+        if (voices[i].default) {
+          option.textContent += ' -- DEFAULT';
+        }
 
-fileBtn.onchange = function(){
-  if(this.files.length) {
-    sName.innerText = this.files[0].name;
-    sName.className = "text-success";
-    if(this.files[0].size > 30000000){
-      sName.className = "text-danger";
-      sName.innerText = "File is too big!";
+        option.setAttribute('data-lang', voices[i].lang);
+        option.setAttribute('data-name', voices[i].name);
+        voiceSelect.appendChild(option);
+      }
+      voiceSelect.selectedIndex = selectedIndex;
     }
-  }
-  else {
-    sName.innerText = '';
-  }
-}
 
-// Switch button
-var switch_btn = document.querySelector(".form-check-input");
+    populateVoiceList();
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = populateVoiceList;
+    }
+    //end
 
-switch_btn.onchange = function () {
-  if (this.checked) {
-    document.querySelector(".check_1").style.color = "#B3B6CB";
-    document.querySelector(".check_2").style.color = "black";
-  }
-  else {
-    document.querySelector(".check_1").style.color = "black";
-    document.querySelector(".check_2").style.color = "#B3B6CB";
-  }
-}
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-    crossorigin="anonymous"></script>
+
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+    var content1 = document.getElementById("transcript");
+    var submit1 = document.getElementById("action");
+    var book_code = prompt("Enter Book code like 'CS201'", "");
+    function record() {
+      if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+        recognition.lang = "en-US";
+        recognition.start();
+
+        recognition.onresult = function (event) {
+          if (book_code != "") {
+            content1.value = event.results[0][0].transcript.toLowerCase() + "\xa0" + ":" + book_code;
+          }
+          else {
+            content1.value = event.results[0][0].transcript.toLowerCase();
+          }
+          var speech = new SpeechSynthesisUtterance();
+          speech.text = ('Searching for') + content1.value + (' on google.');
+          if (speech.text.includes("open youtube")) {
+            window.open("https://www.youtube.com", "_blank");
+            speech.text = ('Opening YouTube');
+          }
+          else {
+            submit1.submit();
+          }
+          var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+          for (i = 0; i < voices.length; i++) {
+            if (voices[i].name === selectedOption) {
+              speech.voice = voices[i];
+              break;
+            }
+          }
+          speech.volume = 1;
+          speech.rate = 1;
+          speech.pitch = 1;
+          window.speechSynthesis.speak(speech);
+        };
+        recognition.onspeechend = function () {
+          recognition.stop();
+        }
+      }
+      else {
+        alert("Oh Sorry! Your browser does not support Speech Recognition")
+      }
+    }
+
+    // Control messages
+    recognition.onstart = function() {
+      transcript.placeholder = "Speak now, i am listing";
+    }
+    recognition.onerror = function() {
+      transcript.placeholder = "Please check your microphon or try again";
+    }
+    recognition.onaudioend = function() {
+      transcript.placeholder = "Click on mic and speak your question";
+    }
+
+
+    // // When a user visits the page...
+    // var check_cookies = localStorage.getItem('no_display');
+    // if (check_cookies !== 'true') {
+    //   alert("Welcome sir");
+    // }
+
+    // // Set ...
+    // localStorage.setItem('no_display', 'true');
+
+
+
+  </script>
 </body>
 
 </html>
