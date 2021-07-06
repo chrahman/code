@@ -114,7 +114,9 @@
     // localStorage.setItem('no_display', 'true');
 
 
-
+document.getElementById('validationCustom05').onkeyup = function () {
+  document.querySelector('#count-character p').innerHTML = (0 + this.value.length);
+};
   </script>
 </body>
 
