@@ -112,12 +112,41 @@
 
     // // Set ...
     // localStorage.setItem('no_display', 'true');
-
-
-document.getElementById('validationCustom05').onkeyup = function () {
-  document.querySelector('#count-character p').innerHTML = (0 + this.value.length);
-};
   </script>
+  
+  <style>
+    .navbar .dropdown-menu:after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      width: 1rem;
+      height: 1rem;
+      background: #000;
+      top: -.375rem;
+      left: 1.8rem;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      background: inherit;
+      border-radius: .125rem;
+      border-width: 1px 0 0 1px;
+      border-style: solid;
+      border-color: #f9fafd;
+    }
+
+    .navbar .dropdown-menu-end:after {
+      left: auto;
+      right: 1.8rem !important;
+    }
+
+    .navbar .megamenu:after {
+      left: 12.8rem !important;
+    }
+    @media screen and (max-width:992px) {
+    .navbar .dropdown-menu:after {
+      content: none !important;
+    }
+  </style>
 </body>
 
 </html>
